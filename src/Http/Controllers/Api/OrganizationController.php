@@ -2,10 +2,10 @@
 
 namespace Backstage\Crm\Http\Controllers\Api;
 
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
 use Backstage\Crm\Models\Organization;
 use Backstage\Crm\Resources\OrganizationResource;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class OrganizationController extends Controller
 {

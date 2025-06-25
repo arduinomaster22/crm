@@ -2,10 +2,10 @@
 
 namespace Backstage\Crm\Http\Controllers\Api;
 
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
 use Backstage\Crm\Models\Department;
 use Backstage\Crm\Resources\DepartmentResource;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class DepartmentController extends Controller
 {

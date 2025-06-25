@@ -2,10 +2,10 @@
 
 namespace Backstage\Crm\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use Backstage\Crm\Models\Lead;
-use Illuminate\Routing\Controller;
 use Backstage\Crm\Resources\LeadResource;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class LeadController extends Controller
 {

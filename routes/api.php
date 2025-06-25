@@ -1,15 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Backstage\Crm\Http\Controllers\Api\TagController;
-use Backstage\Crm\Http\Controllers\Api\LeadController;
 use Backstage\Crm\Http\Controllers\Api\ContactController;
 use Backstage\Crm\Http\Controllers\Api\DepartmentController;
+use Backstage\Crm\Http\Controllers\Api\LeadController;
 use Backstage\Crm\Http\Controllers\Api\OrganizationController;
+use Backstage\Crm\Http\Controllers\Api\TagController;
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('api/crm')->middleware(['api', 'auth:sanctum'])->group(function () {
 
-    Route::get('ping', fn() => response()->json(['status' => 'ok']))
+    Route::get('ping', fn () => response()->json(['status' => 'ok']))
         ->name('crm.ping');
 
     Route::prefix('organizations')->group(function () {

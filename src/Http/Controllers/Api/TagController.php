@@ -2,10 +2,10 @@
 
 namespace Backstage\Crm\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use Backstage\Crm\Models\Tag;
-use Illuminate\Routing\Controller;
 use Backstage\Crm\Resources\TagResource;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class TagController extends Controller
 {

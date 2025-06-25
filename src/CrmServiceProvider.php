@@ -2,6 +2,8 @@
 
 namespace Backstage\Crm;
 
+use Backstage\Crm\Commands\CrmCommand;
+use Backstage\Crm\Testing\TestsCrm;
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
 use Filament\Support\Assets\Css;
@@ -13,8 +15,6 @@ use Livewire\Features\SupportTesting\Testable;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Backstage\Crm\Commands\CrmCommand;
-use Backstage\Crm\Testing\TestsCrm;
 
 class CrmServiceProvider extends PackageServiceProvider
 {
@@ -126,7 +126,7 @@ class CrmServiceProvider extends PackageServiceProvider
     protected function getRoutes(): array
     {
         return [
-            'api'
+            'api',
         ];
     }
 

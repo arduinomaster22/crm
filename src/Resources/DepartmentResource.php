@@ -2,7 +2,6 @@
 
 namespace Backstage\Crm\Resources;
 
-
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
