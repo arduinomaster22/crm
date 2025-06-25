@@ -1,36 +1,33 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "backstage/crm",
+    "description": "A handcrafted Filament CRM plugin",
     "keywords": [
-        ":vendor_name",
+        "Backstage",
         "laravel",
-        ":package_slug"
+        "crm"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/backstage/crm",
     "support": {
-        "issues": "https://github.com/:vendor_slug/:package_slug/issues",
-        "source": "https://github.com/:vendor_slug/:package_slug"
+        "issues": "https://github.com/backstage/crm/issues",
+        "source": "https://github.com/backstage/crm"
     },
     "license": "MIT",
-    "authors": [
-        {
-            "name": ":author_name",
-            "email": "author@domain.com",
-            "role": "Developer"
-        }
-    ],
+    "authors": [{
+        "name": "Manoj Hortulanus",
+        "email": "manoj@vormkracht10.nl",
+        "role": "Developer"
+    }],
     "require": {
-        "php": "^8.1",
-        "filament/filament": "^3.0",
-        "filament/forms": "^3.0",
-        "filament/tables": "^3.0",
+        "php": "^8.2",
+        "filament/filament": ">=4.0",
+        "laravel/sanctum": ">=4.0",
         "spatie/laravel-package-tools": "^1.15.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
-        "nunomaduro/collision": "^7.9",
+        "nunomaduro/collision": "^8.1.1||^7.10.0",
         "nunomaduro/larastan": "^2.0.1",
-        "orchestra/testbench": "^8.0",
+        "orchestra/testbench": "^9.0.0||^8.22.0",
         "pestphp/pest": "^2.1",
         "pestphp/pest-plugin-arch": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
@@ -41,13 +38,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Backstage\\Crm\\": "src/",
+            "Backstage\\Crm\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/"
+            "Backstage\\Crm\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -67,10 +64,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Backstage\\Crm\\CrmServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "Crm": "Backstage\\Crm\\Facades\\Crm"
             }
         }
     },

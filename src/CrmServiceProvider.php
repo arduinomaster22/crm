@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace Backstage\Crm;
 
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
@@ -13,14 +13,14 @@ use Livewire\Features\SupportTesting\Testable;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
-use VendorName\Skeleton\Testing\TestsSkeleton;
+use Backstage\Crm\Commands\CrmCommand;
+use Backstage\Crm\Testing\TestsCrm;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class CrmServiceProvider extends PackageServiceProvider
 {
-    public static string $name = 'skeleton';
+    public static string $name = 'crm';
 
-    public static string $viewNamespace = 'skeleton';
+    public static string $viewNamespace = 'crm';
 
     public function configurePackage(Package $package): void
     {
@@ -36,7 +36,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
                     ->publishConfigFile()
                     ->publishMigrations()
                     ->askToRunMigrations()
-                    ->askToStarRepoOnGitHub(':vendor_slug/:package_slug');
+                    ->askToStarRepoOnGitHub('backstage/crm');
             });
 
         $configFileName = $package->shortName();
@@ -49,12 +49,8 @@ class SkeletonServiceProvider extends PackageServiceProvider
             $package->hasMigrations($this->getMigrations());
         }
 
-        if (file_exists($package->basePath('/../resources/lang'))) {
-            $package->hasTranslations();
-        }
-
-        if (file_exists($package->basePath('/../resources/views'))) {
-            $package->hasViews(static::$viewNamespace);
+        if (file_exists($package->basePath('/../routes'))) {
+            $package->hasRoutes($this->getRoutes());
         }
     }
 
@@ -80,18 +76,18 @@ class SkeletonServiceProvider extends PackageServiceProvider
         if (app()->runningInConsole()) {
             foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
                 $this->publishes([
-                    $file->getRealPath() => base_path("stubs/skeleton/{$file->getFilename()}"),
-                ], 'skeleton-stubs');
+                    $file->getRealPath() => base_path("stubs/crm/{$file->getFilename()}"),
+                ], 'crm-stubs');
             }
         }
 
         // Testing
-        Testable::mixin(new TestsSkeleton);
+        Testable::mixin(new TestsCrm);
     }
 
     protected function getAssetPackageName(): ?string
     {
-        return ':vendor_slug/:package_slug';
+        return 'backstage/crm';
     }
 
     /**
@@ -100,9 +96,9 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getAssets(): array
     {
         return [
-            // AlpineComponent::make('skeleton', __DIR__ . '/../resources/dist/components/skeleton.js'),
-            Css::make('skeleton-styles', __DIR__ . '/../resources/dist/skeleton.css'),
-            Js::make('skeleton-scripts', __DIR__ . '/../resources/dist/skeleton.js'),
+            // AlpineComponent::make('crm', __DIR__ . '/../resources/dist/components/crm.js'),
+            Css::make('crm-styles', __DIR__ . '/../resources/dist/crm.css'),
+            Js::make('crm-scripts', __DIR__ . '/../resources/dist/crm.js'),
         ];
     }
 
@@ -112,7 +108,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getCommands(): array
     {
         return [
-            SkeletonCommand::class,
+            CrmCommand::class,
         ];
     }
 
@@ -129,7 +125,9 @@ class SkeletonServiceProvider extends PackageServiceProvider
      */
     protected function getRoutes(): array
     {
-        return [];
+        return [
+            'api'
+        ];
     }
 
     /**
@@ -146,7 +144,11 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_skeleton_table',
+            'create_organizations_table',
+            'create_departments_table',
+            'create_contacts_table',
+            'create_leads_table',
+            'create_tags_table',
         ];
     }
 }
