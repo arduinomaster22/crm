@@ -2,14 +2,12 @@
 
 namespace Backstage\Crm\Models\Concerns\Organization;
 
-use Backstage\Crm\Models\Tag;
-use Backstage\Crm\Models\Lead;
 use Backstage\Crm\Models\Contact;
-use Backstage\Crm\Models\Department;
-use Backstage\Crm\Models\Organization;
 use Backstage\Crm\Models\ContactMoment;
+use Backstage\Crm\Models\Department;
+use Backstage\Crm\Models\Lead;
+use Backstage\Crm\Models\Tag;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait HasRelations

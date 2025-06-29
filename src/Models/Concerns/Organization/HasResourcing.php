@@ -2,9 +2,7 @@
 
 namespace Backstage\Crm\Models\Concerns\Organization;
 
-use Filament\Support\Colors\Color;
 use Illuminate\Support\Collection;
-use Filament\Support\Icons\Heroicon;
 
 trait HasResourcing
 {
