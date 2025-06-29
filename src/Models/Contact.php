@@ -2,14 +2,14 @@
 
 namespace Backstage\Crm\Models;
 
+use Backstage\Crm\Models\Concerns\Contact as Concerns;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contact extends Model
 {
+    use Concerns\HasAttributes;
+    use Concerns\HasRelations;
     use SoftDeletes;
 
     protected $table = 'crm_contacts';
@@ -27,24 +27,4 @@ class Contact extends Model
         'address_country',
         'notes',
     ];
-
-    public function organization(): BelongsTo
-    {
-        return $this->belongsTo(Organization::class);
-    }
-
-    public function tags(): MorphToMany
-    {
-        return $this->morphToMany(Tag::class, 'taggable', 'crm_taggables');
-    }
-
-    public function contactMoments(): BelongsToMany
-    {
-        return $this->belongsToMany(ContactMoment::class, 'crm_contact_moment_contact');
-    }
-
-    public function getNameAttribute(): string
-    {
-        return trim("{$this->first_name} {$this->last_name}");
-    }
 }

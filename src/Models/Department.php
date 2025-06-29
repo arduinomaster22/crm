@@ -2,13 +2,13 @@
 
 namespace Backstage\Crm\Models;
 
+use Backstage\Crm\Models\Concerns\Department as Concerns;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Department extends Model
 {
+    use Concerns\HasRelations;
     use SoftDeletes;
 
     protected $table = 'crm_departments';
@@ -24,19 +24,4 @@ class Department extends Model
         'branch',
         'total_employees',
     ];
-
-    public function tags(): MorphToMany
-    {
-        return $this->morphToMany(Tag::class, 'taggable', 'crm_taggables');
-    }
-
-    public function organization(): BelongsTo
-    {
-        return $this->belongsTo(Organization::class, 'organization_id');
-    }
-
-    public function contactMoments()
-    {
-        return $this->morphMany(ContactMoment::class, 'contactable');
-    }
 }
