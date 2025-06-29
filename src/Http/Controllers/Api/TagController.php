@@ -2,10 +2,10 @@
 
 namespace Backstage\Crm\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use Backstage\Crm\Models\Tag;
-use Illuminate\Routing\Controller;
 use Backstage\Crm\Resources\TagResource;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class TagController extends Controller
 {
@@ -16,12 +16,15 @@ class TagController extends Controller
 
     public function store(Request $request)
     {
+        $tagsTable = app(Tag::class)->getTable();
+
         $data = $request->validate([
-            'name' => 'required|string|unique:crm_tags,name',
+            'name' => 'required|string|unique:' . $tagsTable . ',name',
             'color' => 'nullable|string',
         ]);
 
-        $tag = Tag::create($data);
+        $tag = Tag::query()
+            ->create($data);
 
         return new TagResource($tag);
     }
@@ -33,8 +36,10 @@ class TagController extends Controller
 
     public function update(Request $request, Tag $tag)
     {
+        $tagsTable = app(Tag::class)->getTable();
+
         $data = $request->validate([
-            'name' => 'required|string|unique:crm_tags,name,' . $tag->id,
+            'name' => 'required|string|unique:' . $tagsTable . ',name,' . $tag->id,
             'color' => 'nullable|string',
         ]);
 
@@ -47,7 +52,9 @@ class TagController extends Controller
     {
         $query = $request->get('query', '');
 
-        $tags = Tag::where('name', 'like', "%{$query}%")->get();
+        $tags = Tag::query()
+            ->where('name', 'like', "%{$query}%")
+            ->get();
 
         return TagResource::collection($tags);
     }

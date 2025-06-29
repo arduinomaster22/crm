@@ -13,21 +13,21 @@ class Tag extends Model
 
     public function leads(): MorphToMany
     {
-        return $this->morphedByMany(Lead::class, 'taggable');
+        return $this->morphedByMany(Lead::class, 'taggable', 'crm_taggables');
     }
 
     public function contacts(): MorphToMany
     {
-        return $this->morphedByMany(Contact::class, 'taggable');
+        return $this->morphedByMany(Contact::class, 'taggable', 'crm_taggables');
     }
 
     public function organizations(): MorphToMany
     {
-        return $this->morphedByMany(Organization::class, 'taggable');
+        return $this->morphedByMany(Organization::class, 'taggable', 'crm_taggables');
     }
 
     public function departments(): MorphToMany
     {
-        return $this->morphedByMany(Department::class, 'taggable');
+        return $this->morphedByMany(Department::class, 'taggable', 'crm_taggables');
     }
 }

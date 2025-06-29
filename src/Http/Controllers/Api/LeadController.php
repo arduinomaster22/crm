@@ -2,10 +2,10 @@
 
 namespace Backstage\Crm\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use Backstage\Crm\Models\Lead;
-use Illuminate\Routing\Controller;
 use Backstage\Crm\Resources\LeadResource;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class LeadController extends Controller
 {
@@ -21,7 +21,8 @@ class LeadController extends Controller
 
     public function store(Request $request)
     {
-        $lead = Lead::create($request->input());
+        $lead = Lead::query()
+            ->create($request->input());
 
         return new LeadResource($lead);
     }
@@ -44,7 +45,8 @@ class LeadController extends Controller
     {
         $query = $request->input('query');
 
-        $leads = Lead::where('first_name', 'like', "%{$query}%")
+        $leads = Lead::query()
+            ->where('first_name', 'like', "%{$query}%")
             ->orWhere('last_name', 'like', "%{$query}%")
             ->orWhere('email', 'like', "%{$query}%")
             ->get();

@@ -14,14 +14,16 @@
     "license": "MIT",
     "authors": [{
         "name": "Manoj Hortulanus",
-        "email": "manoj@vormkracht10.nl",
-        "role": "Developer"
+        "email": "manoj@backstagephp.com",
+        "role": "Creator and Developer"
     }],
     "require": {
         "php": "^8.2",
+        "awcodes/filament-badgeable-column": "^3.0@beta",
         "filament/filament": ">=4.0",
         "laravel/sanctum": ">=4.0",
-        "spatie/laravel-package-tools": "^1.15.0"
+        "spatie/laravel-package-tools": "^1.15.0",
+        "spatie/laravel-permission": ">=6.20"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
@@ -57,6 +59,7 @@
     "config": {
         "sort-packages": true,
         "allow-plugins": {
+            "civicrm/composer-compile-plugin": true,
             "pestphp/pest-plugin": true,
             "phpstan/extension-installer": true
         }

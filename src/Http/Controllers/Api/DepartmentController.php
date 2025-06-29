@@ -2,10 +2,10 @@
 
 namespace Backstage\Crm\Http\Controllers\Api;
 
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
 use Backstage\Crm\Models\Department;
 use Backstage\Crm\Resources\DepartmentResource;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class DepartmentController extends Controller
 {
@@ -21,7 +21,8 @@ class DepartmentController extends Controller
 
     public function store(Request $request)
     {
-        $Department = Department::create($request->input());
+        $Department = Department::query()
+            ->create($request->input());
 
         return new DepartmentResource($Department);
     }
@@ -44,7 +45,8 @@ class DepartmentController extends Controller
     {
         $query = $request->input('query');
 
-        $Departments = Department::where('name', 'like', "%{$query}%")
+        $Departments = Department::query()
+            ->where('name', 'like', "%{$query}%")
             ->orWhere('email', 'like', "%{$query}%")
             ->get();
 

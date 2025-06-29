@@ -2,10 +2,10 @@
 
 namespace Backstage\Crm\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use Backstage\Crm\Models\Contact;
-use Illuminate\Routing\Controller;
 use Backstage\Crm\Resources\ContactResource;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class ContactController extends Controller
 {
@@ -21,7 +21,8 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
-        $contact = Contact::create($request->input());
+        $contact = Contact::query()
+            ->create($request->input());
 
         return new ContactResource($contact);
     }
@@ -44,7 +45,8 @@ class ContactController extends Controller
     {
         $query = $request->input('query');
 
-        $contacts = Contact::where('first_name', 'like', "%{$query}%")
+        $contacts = Contact::query()
+            ->where('first_name', 'like', "%{$query}%")
             ->orWhere('last_name', 'like', "%{$query}%")
             ->orWhere('email', 'like', "%{$query}%")
             ->get();

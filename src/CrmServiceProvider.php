@@ -2,6 +2,8 @@
 
 namespace Backstage\Crm;
 
+use Backstage\Crm\Commands\CrmCommand;
+use Backstage\Crm\Testing\TestsCrm;
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
 use Filament\Support\Assets\Css;
@@ -13,8 +15,6 @@ use Livewire\Features\SupportTesting\Testable;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Backstage\Crm\Commands\CrmCommand;
-use Backstage\Crm\Testing\TestsCrm;
 
 class CrmServiceProvider extends PackageServiceProvider
 {
@@ -37,6 +37,12 @@ class CrmServiceProvider extends PackageServiceProvider
                     ->publishMigrations()
                     ->askToRunMigrations()
                     ->askToStarRepoOnGitHub('backstage/crm');
+
+                $command->startWith(function () use ($command) {
+                    $command->call('vendor:publish', [
+                        '--provider' => 'Spatie\Permission\PermissionServiceProvider',
+                    ]);
+                });
             });
 
         $configFileName = $package->shortName();
@@ -97,8 +103,8 @@ class CrmServiceProvider extends PackageServiceProvider
     {
         return [
             // AlpineComponent::make('crm', __DIR__ . '/../resources/dist/components/crm.js'),
-            Css::make('crm-styles', __DIR__ . '/../resources/dist/crm.css'),
-            Js::make('crm-scripts', __DIR__ . '/../resources/dist/crm.js'),
+            // Css::make('crm-styles', __DIR__ . '/../resources/dist/crm.css'),
+            // Js::make('crm-scripts', __DIR__ . '/../resources/dist/crm.js'),
         ];
     }
 
@@ -126,7 +132,7 @@ class CrmServiceProvider extends PackageServiceProvider
     protected function getRoutes(): array
     {
         return [
-            'api'
+            'api',
         ];
     }
 
@@ -149,6 +155,8 @@ class CrmServiceProvider extends PackageServiceProvider
             'create_contacts_table',
             'create_leads_table',
             'create_tags_table',
+            'create_contact_moments',
+            'contact_moment_contact',
         ];
     }
 }

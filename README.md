@@ -20,40 +20,7 @@ composer require backstage/crm
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --tag="crm-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="crm-config"
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="crm-views"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-## Usage
-
-```php
-$crm = new Backstage\Crm();
-echo $crm->echoPhrase('Hello, Backstage!');
-```
-
-## Testing
-
-```bash
-composer test
+php artisan crm:install
 ```
 
 ## Changelog

@@ -1,0 +1,22 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up(): void
+    {
+        Schema::create('crm_contact_moment_contact', function (Blueprint $table) {
+            $table->foreignId('contact_moment_id')->constrained('crm_contact_moments')->cascadeOnDelete();
+            $table->foreignId('contact_id')->constrained('crm_contacts')->cascadeOnDelete();
+
+            $table->primary(['contact_moment_id', 'contact_id']);
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('crm_contact_moment_contact');
+    }
+};

@@ -2,10 +2,10 @@
 
 namespace Backstage\Crm\Http\Controllers\Api;
 
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
 use Backstage\Crm\Models\Organization;
 use Backstage\Crm\Resources\OrganizationResource;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class OrganizationController extends Controller
 {
@@ -21,7 +21,8 @@ class OrganizationController extends Controller
 
     public function store(Request $request)
     {
-        $organization = Organization::create($request->input());
+        $organization = Organization::query()
+            ->create($request->input());
 
         return new OrganizationResource($organization);
     }
@@ -44,7 +45,8 @@ class OrganizationController extends Controller
     {
         $query = $request->input('query');
 
-        $organizations = Organization::where('name', 'like', "%{$query}%")
+        $organizations = Organization::query()
+            ->where('name', 'like', "%{$query}%")
             ->orWhere('email', 'like', "%{$query}%")
             ->get();
 

@@ -2,6 +2,11 @@
 
 namespace Backstage\Crm;
 
+use Backstage\Crm\Filament\Resources\ContactMoments\ContactMomentResource;
+use Backstage\Crm\Filament\Resources\Contacts\ContactResource;
+use Backstage\Crm\Filament\Resources\Departments\DepartmentResource;
+use Backstage\Crm\Filament\Resources\Leads\LeadResource;
+use Backstage\Crm\Filament\Resources\Organizations\OrganizationResource;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
@@ -14,7 +19,21 @@ class CrmPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        //
+        $panel->resources([
+            OrganizationResource::class,
+
+            DepartmentResource::class,
+
+            LeadResource::class,
+
+            ContactResource::class,
+
+            ContactMomentResource::class,
+        ]);
+
+        $panel->pages([
+            \Backstage\Crm\Filament\Pages\CrmDashboard::class,
+        ]);
     }
 
     public function boot(Panel $panel): void
