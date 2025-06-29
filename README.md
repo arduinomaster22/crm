@@ -11,6 +11,16 @@ This is where your description should go. Limit it to a paragraph or two. Consid
 
 ## Installation
 
+Repository:
+```json
+    "repositories": {
+        "backstage/crm": {
+            "type": "vcs",
+            "url": "git@github.com:arduinomaster22/crm.git"
+        }
+    }
+```
+
 You can install the package via composer:
 
 ```bash
