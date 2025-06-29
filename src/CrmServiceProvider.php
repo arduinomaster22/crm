@@ -42,6 +42,8 @@ class CrmServiceProvider extends PackageServiceProvider
                     $command->call('vendor:publish', [
                         '--provider' => 'Spatie\Permission\PermissionServiceProvider',
                     ]);
+
+                    $command->call('install:api');
                 });
             });
 
