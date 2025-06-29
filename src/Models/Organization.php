@@ -40,30 +40,4 @@ class Organization extends Model
         'mailing_address_city',
         'mailing_address_country',
     ];
-
-    public function getFullAddressAttribute(): string
-    {
-        $addressParts = [
-            $this->address_street,
-            $this->address_house_number,
-            $this->address_zipcode,
-            $this->address_city,
-            $this->address_country,
-        ];
-
-        return implode(', ', array_filter($addressParts));
-    }
-
-    public function getFullMailingAddressAttribute(): string
-    {
-        $mailingAddressParts = [
-            $this->mailing_address_street,
-            $this->mailing_address_house_number,
-            $this->mailing_address_zipcode,
-            $this->mailing_address_city,
-            $this->mailing_address_country,
-        ];
-
-        return implode(', ', array_filter($mailingAddressParts));
-    }
 }
