@@ -16,7 +16,7 @@ Repository:
 "repositories": {
     "backstage/crm": {
         "type": "vcs",
-         "url": "git@github.com:arduinomaster22/crm.git"
+        "url": "git@github.com:arduinomaster22/crm.git"
     }
 }
 ```
