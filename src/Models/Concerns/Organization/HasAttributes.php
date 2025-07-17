@@ -4,6 +4,10 @@ namespace Backstage\Crm\Models\Concerns\Organization;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $fullAddress
+ * @property string $fullMailingAddress
+ */
 trait HasAttributes
 {
     public static function bootHasAttributes()

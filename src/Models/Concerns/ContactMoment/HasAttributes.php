@@ -8,6 +8,12 @@ use Backstage\Crm\Models\Department;
 use Backstage\Crm\Models\Organization;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $contactableLabel
+ * @property string $contactableUrl
+ * @property bool $usableContactable
+ * @property string $contactableIcon
+ */
 trait HasAttributes
 {
     public static function bootHasAttributes()

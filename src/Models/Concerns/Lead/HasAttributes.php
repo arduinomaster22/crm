@@ -4,6 +4,9 @@ namespace Backstage\Crm\Models\Concerns\Lead;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $name
+ */
 trait HasAttributes
 {
     public static function bootHasAttributes()
